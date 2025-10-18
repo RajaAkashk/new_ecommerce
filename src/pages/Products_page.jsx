@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { ChevronUp, ChevronDown, ShoppingCart, HeartIcon } from "lucide-react";
 import productsData from "../products";
+import { Link } from "react-router-dom";
 
 function Products_page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const ShowAllProducts = () => {
     return productsData.map((product) => (
-      <div
+      <Link
+        to={`/product/${product.id}`}
         key={product.id}
         className="bg-white border-red-800 rounded-xl shadow p-4 flex flex-col justify-between hover:shadow-xl transition"
       >
@@ -32,7 +34,7 @@ function Products_page() {
             <HeartIcon className="mr-2" /> Add to wishlist
           </button>
         </div>
-      </div>
+      </Link>
     ));
   };
 
