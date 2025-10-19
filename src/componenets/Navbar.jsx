@@ -64,7 +64,7 @@ function Navbar() {
                 5
               </span>
             </Link>
-            <Link to="/" className="relative">
+            <Link to="/wishlist" className="relative">
               <HeartIcon className="text-white" />
               <span className="absolute -top-4 left-5 text-white font-bold">
                 5
