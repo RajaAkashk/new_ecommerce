@@ -18,7 +18,7 @@ const productsData = [
     description: "Slim fit mid-rise jeans made from stretchable denim fabric.",
     price: 1299,
     category: "Men",
-    sizes: ["30", "32", "34", "36"],
+    sizes: ["S", "M", "L", "XL"],
     color: "Blue",
     image: "https://placehold.co/600x400?text=Denim+Jeans",
     rating: 4.6,
