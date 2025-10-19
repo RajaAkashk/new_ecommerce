@@ -21,7 +21,10 @@ export const ShowAllProducts = ({ filteredProducts }) => {
         className="w-full h-56 object-cover rounded-lg mb-3"
       />
       <div className="flex flex-col flex-grow">
-        <h2 className="text-lg font-semibold mb-1">{product.name}</h2>
+        <h2 className="text-lg font-semibold mb-1">
+          {product.name} ({product.category})
+        </h2>
+
         <p className="text-gray-600 text-sm mb-1">{product.description}</p>
         <p className="font-bold text-orange-500 text-lg mb-3">
           ₹{product.price}
