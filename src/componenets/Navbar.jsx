@@ -1,11 +1,12 @@
 import { ShoppingCart, HeartIcon, Menu, X, Search } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { productContext } from "../contexts/ProductContext";
 
 function Navbar() {
   const location = useLocation();
-
   const [showSeach, setShowSearch] = useState(false);
+  const { searchTerm, setSearchTerm } = useContext(productContext);
 
   useEffect(() => {
     if (location.pathname.startsWith("/products")) {
@@ -35,6 +36,8 @@ function Navbar() {
                 type="text"
                 placeholder="Search products..."
                 className="w-full text-sm md:text-base outline-none"
+                onChange={(e) => setSearchTerm(e.target.value)}
+                value={searchTerm}
               />
             </div>
           </div>

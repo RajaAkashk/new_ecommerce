@@ -60,10 +60,10 @@ const productsData = [
   },
   {
     id: 6,
-    name: "Unisex Joggers",
+    name: "Kids Joggers",
     description: "Comfortable cotton joggers perfect for gym or casual wear.",
     price: 899,
-    category: "Unisex",
+    category: "Kids",
     sizes: ["S", "M", "L", "XL"],
     color: "Gray",
     image: "https://placehold.co/600x400?text=Joggers",
@@ -75,7 +75,7 @@ const productsData = [
     description:
       "Classic blue denim jacket with a button front and chest pockets.",
     price: 1799,
-    category: "Unisex",
+    category: "Kids",
     sizes: ["M", "L", "XL"],
     color: "Blue",
     image: "https://placehold.co/600x400?text=Denim+Jacket",
