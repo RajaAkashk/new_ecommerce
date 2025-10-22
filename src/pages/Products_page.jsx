@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { ChevronUp, ChevronDown, ShoppingCart, HeartIcon } from "lucide-react";
 import productsData from "../products";
 import { Link } from "react-router-dom";
+import { productContext } from "../contexts/ProductContext";
 
 export const ShowAllProducts = ({ filteredProducts }) => {
   const productList =
@@ -45,6 +46,9 @@ export const ShowAllProducts = ({ filteredProducts }) => {
 function Products_page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const { searchTerm, filteredProducts } = useContext(productContext);
+  console.log("PRoduts", filteredProducts);
+
   // Temporary filters before applying
   const [filters, setFilters] = useState({
     categories: [],
@@ -87,6 +91,9 @@ function Products_page() {
 
   // Filter logic (only uses applied filters)
   const filterProducts = productsData
+    .filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
     .filter((product) =>
       appliedFilters.categories.length > 0
         ? appliedFilters.categories.includes(product.category)
