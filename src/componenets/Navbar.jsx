@@ -6,7 +6,8 @@ import { productContext } from "../contexts/ProductContext";
 function Navbar() {
   const location = useLocation();
   const [showSeach, setShowSearch] = useState(false);
-  const { searchTerm, setSearchTerm } = useContext(productContext);
+  const { searchTerm, setSearchTerm, cart, wishlist } =
+    useContext(productContext);
 
   useEffect(() => {
     if (location.pathname.startsWith("/products")) {
@@ -67,13 +68,13 @@ function Navbar() {
             <Link to="/" className="relative">
               <ShoppingCart className="text-white" />
               <span className="absolute -top-4 left-5 text-white font-bold">
-                5
+                {cart.length}
               </span>
             </Link>
             <Link to="/wishlist" className="relative">
               <HeartIcon className="text-white" />
               <span className="absolute -top-4 left-5 text-white font-bold">
-                5
+                {wishlist.length}
               </span>
             </Link>
           </div>

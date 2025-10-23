@@ -5,6 +5,8 @@ export const productContext = createContext();
 
 export const ProductProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [cart, setCart] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
 
   const [appliedFilters, setAppliedFilters] = useState({
     categories: [],
@@ -46,10 +48,23 @@ export const ProductProvider = ({ children }) => {
       });
 
     setFilteredProducts(result);
-
-    console.log("Applied Filters", appliedFilters);
-    console.log("Filtered Products Count", filteredProducts.length);
   }, [appliedFilters, searchTerm]);
+
+  const addToCart = (product) => {
+    setCart((prev) => [...prev, product]);
+  };
+
+  const removeFromCart = (product) => {
+    setCart((prev) => prev.filter((prod) => prod.id !== product.id));
+  };
+
+  const addToWishlist = (product) => {
+    setWishlist((prev) => [...prev, product]);
+  };
+
+  const removeFromWishlist = (product) => {
+    setWishlist((prev) => prev.filter((item) => item.id !== product.id));
+  };
 
   return (
     <productContext.Provider
@@ -59,6 +74,12 @@ export const ProductProvider = ({ children }) => {
         appliedFilters,
         setAppliedFilters,
         filteredProducts,
+        addToCart,
+        removeFromCart,
+        cart,
+        wishlist,
+        addToWishlist,
+        removeFromWishlist,
       }}
     >
       {children}
