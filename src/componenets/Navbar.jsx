@@ -31,7 +31,7 @@ function Navbar() {
         {showSeach ? (
           <div className="flex-grow max-w-lg w-full mx-2">
             <div className="flex items-center bg-white rounded-lg overflow-hidden px-3 py-2">
-              <Search className="text-gray-400 me-1 size-4.5" />
+              <Search className="text-gray-300 me-1 size-5" />
               <input
                 type="text"
                 placeholder="Search products..."
@@ -39,6 +39,9 @@ function Navbar() {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 value={searchTerm}
               />
+              <button onClick={() => setSearchTerm("")}>
+                <X className="hover:text-orange-400 text-gray-300" />
+              </button>
             </div>
           </div>
         ) : (
