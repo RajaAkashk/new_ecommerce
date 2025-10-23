@@ -5,55 +5,70 @@ import { Link } from "react-router-dom";
 import { productContext } from "../contexts/ProductContext";
 
 export const ShowAllProducts = ({ filteredProducts }) => {
+  const { addToCart, addToWishlist } = useContext(productContext);
+
   const productList =
     filteredProducts && filteredProducts.length > 0
       ? filteredProducts
       : productsData;
 
   return productList.map((product) => (
-    <Link
-      to={`/product/${product.id}`}
+    <div
       key={product.id}
       className="bg-white border-red-800 rounded-xl shadow p-4 flex flex-col justify-between hover:shadow-xl transition"
     >
-      <img
-        src={product.image}
-        alt={product.name}
-        className="w-full h-56 object-cover rounded-lg mb-3"
-      />
-      <div className="flex flex-col flex-grow">
-        <h2 className="text-lg font-semibold mb-1">
-          {product.name} ({product.category})
-        </h2>
+      <Link to={`/product/${product.id}`}>
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full h-56 object-cover rounded-lg mb-3"
+        />
+        <div className="flex flex-col flex-grow">
+          <h2 className="text-lg font-semibold mb-1">
+            {product.name} ({product.category})
+          </h2>
 
-        <p className="text-gray-600 text-sm mb-1">{product.description}</p>
-        <p className="font-bold text-orange-500 text-lg mb-3">
-          ₹{product.price}
-        </p>
-      </div>
+          <p className="text-gray-600 text-sm mb-1">{product.description}</p>
+          <p className="font-bold text-orange-500 text-lg mb-3">
+            ₹{product.price}
+          </p>
+        </div>
+      </Link>
       <div className="flex justify-between">
-        <button className="flex bg-orange-400 hover:bg-orange-500 text-white px-3 py-2 rounded-lg font-semibold transition">
+        <button
+          onClick={() => addToCart(product)}
+          className="flex bg-orange-400 hover:bg-orange-500 text-white px-3 py-2 rounded-lg font-semibold transition"
+        >
           <ShoppingCart className="mr-2" /> Add to Cart
         </button>
-        <button className="bg-gray-200 flex hover:bg-gray-300 text-gray-800 px-3 py-2 rounded-lg font-semibold transition">
+        <button
+          onClick={() => addToWishlist(product)}
+          className="bg-gray-200 flex hover:bg-gray-300 text-gray-800 px-3 py-2 rounded-lg font-semibold transition"
+        >
           <HeartIcon className="mr-2" /> Add to wishlist
         </button>
       </div>
-    </Link>
+    </div>
   ));
 };
 
 function Products_page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const { searchTerm, filteredProducts, appliedFilters, setAppliedFilters } =
-    useContext(productContext);
+  const {
+    searchTerm,
+    filteredProducts,
+    appliedFilters,
+    setAppliedFilters,
+    cart,
+    wishlist,
+  } = useContext(productContext);
+
+  console.log("cart", cart);
+  console.log("wishlist", wishlist);
 
   // Temporary filters before applying
   const [filters, setFilters] = useState(appliedFilters);
-
-  console.log("PRoduts", filteredProducts);
-  console.log("filters", filters);
 
   // Handle category checkboxes
   const handleCategory = (e) => {
