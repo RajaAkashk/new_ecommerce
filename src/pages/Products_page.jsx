@@ -46,19 +46,14 @@ export const ShowAllProducts = ({ filteredProducts }) => {
 function Products_page() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const { searchTerm, filteredProducts } = useContext(productContext);
-  console.log("PRoduts", filteredProducts);
+  const { searchTerm, filteredProducts, appliedFilters, setAppliedFilters } =
+    useContext(productContext);
 
   // Temporary filters before applying
-  const [filters, setFilters] = useState({
-    categories: [],
-    size: "",
-    priceRange: 2500,
-    sortValue: "",
-  });
+  const [filters, setFilters] = useState(appliedFilters);
 
-  // Filters that have been applied
-  const [appliedFilters, setAppliedFilters] = useState(filters);
+  console.log("PRoduts", filteredProducts);
+  console.log("filters", filters);
 
   // Handle category checkboxes
   const handleCategory = (e) => {
@@ -89,25 +84,8 @@ function Products_page() {
     setAppliedFilters(resetFilters);
   };
 
-  // Filter logic (only uses applied filters)
-  const filterProducts = productsData
-    .filter((product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-    .filter((product) =>
-      appliedFilters.categories.length > 0
-        ? appliedFilters.categories.includes(product.category)
-        : true
-    )
-    .filter((product) => product.price <= appliedFilters.priceRange)
-    .filter((product) =>
-      appliedFilters.size ? product.sizes.includes(appliedFilters.size) : true
-    )
-    .sort((a, b) => {
-      if (appliedFilters.sortValue === "low to high") return a.price - b.price;
-      if (appliedFilters.sortValue === "high to low") return b.price - a.price;
-      return 0;
-    });
+  console.log("Search:", searchTerm);
+  console.log("appliedFilters:", appliedFilters);
 
   return (
     <div className="md:p-4 p-1">
@@ -272,7 +250,7 @@ function Products_page() {
         {/* Products Section */}
         <div className="p-4 rounded-lg w-full">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <ShowAllProducts filteredProducts={filterProducts} />
+            <ShowAllProducts filteredProducts={filteredProducts} />
           </div>
         </div>
       </div>
