@@ -4,12 +4,12 @@ import { productContext } from "../contexts/ProductContext";
 import { Link } from "react-router-dom";
 import { ShoppingCart, HeartIcon } from "lucide-react";
 
-function Wishlist_Page() {
-  const { wishlist } = useContext(productContext);
+function Cart_Page() {
+  const { cart } = useContext(productContext);
 
   const WishlistProducts =
-    wishlist.length > 0 ? (
-      wishlist.map((product) => (
+    cart.length > 0 ? (
+      cart.map((product) => (
         <div
           key={product.id}
           className="bg-white border-red-800 rounded-xl shadow p-4 flex flex-col justify-between hover:shadow-xl transition"
@@ -66,4 +66,4 @@ function Wishlist_Page() {
   );
 }
 
-export default Wishlist_Page;
+export default Cart_Page;

@@ -65,7 +65,7 @@ function Navbar() {
         {/* buttons */}
         <div className="flex space-x-4">
           <div className="flex space-x-4">
-            <Link to="/" className="relative">
+            <Link to="/cart" className="relative">
               <ShoppingCart className="text-white" />
               <span className="absolute -top-4 left-5 text-white font-bold">
                 {cart.length}
