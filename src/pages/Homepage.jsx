@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function Homepage() {
   return (
@@ -15,7 +16,9 @@ function Homepage() {
             Your one-stop shop for quality products and unbeatable prices.
           </p>
           <button className="bg-white text-orange-500 font-semibold px-6 py-3 rounded-full hover:bg-orange-50 flex items-center gap-2 mx-auto transition">
-            Shop Now <ArrowRight size={18} />
+            <Link to="/products" className="flex items-center">
+              Shop Now <ArrowRight size={19} className="ms-1" />
+            </Link>
           </button>
         </div>
       </section>
