@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { ShoppingCart, HeartIcon } from "lucide-react";
 
 function Wishlist_Page() {
-  const { wishlist } = useContext(productContext);
+  const { wishlist, removeFromWishlist, addToCart } =
+    useContext(productContext);
 
   const WishlistProducts =
     wishlist.length > 0 ? (
@@ -35,13 +36,13 @@ function Wishlist_Page() {
           </Link>
           <div className="flex justify-between">
             <button
-              // onClick={() => addToCart(product)}
+              onClick={() => addToCart(product)}
               className="flex bg-orange-400 hover:bg-orange-500 text-white px-3 py-2 rounded-lg font-semibold transition"
             >
               <ShoppingCart className="mr-2" /> Add to Cart
             </button>
             <button
-              // onClick={() => addToWishlist(product)}
+              onClick={() => removeFromWishlist(product)}
               className="bg-gray-200 flex hover:bg-gray-300 text-gray-800 px-3 py-2 rounded-lg font-semibold transition"
             >
               <HeartIcon className="mr-2" /> remove from wishlist
